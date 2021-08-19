@@ -1,0 +1,3 @@
+
+Follow this YouTube video for setting up the JPA project using eclipseLink
+https://www.youtube.com/watch?v=jB2uSJX7jnM

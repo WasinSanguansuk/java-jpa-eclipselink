@@ -5,6 +5,7 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 import shoestore.data.entity.User;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
@@ -78,9 +79,17 @@ public class Main {
 
             System.out.println(users);
 
-            List<Integer> users2 = entityManager.createQuery("SELECT u.id FROM User AS u WHERE u.lastName LIKE :userLastName").setParameter("userLastName", lastNameValue).getResultList();
+            List users2 = entityManager.createQuery("SELECT u.id FROM User AS u WHERE u.lastName LIKE :userLastName").setParameter("userLastName", lastNameValue).getResultList();
 
             System.out.println(users2);
+
+            //List<User> users3 = new ArrayList<>();
+            //
+            //for (Object u : users2) {
+            //    users3.add((User)u);
+            //}
+            //
+            //System.out.println(users3);
         }
         System.out.println("----------");
         {

@@ -2,6 +2,9 @@ package shoestore.data.entity;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "users")
 public class User {
@@ -37,6 +40,10 @@ public class User {
 
     @Column(name = "zipCode")
     private String zipCode;
+
+    //@Basic(fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "userObject")
+    private List<UserRole> userRoles = new ArrayList<UserRole>();
 
     // Constructors
     public User() {
@@ -123,6 +130,14 @@ public class User {
         this.zipCode = zipCode;
     }
 
+    public List<UserRole> getUserRoles() {
+        return userRoles;
+    }
+
+    public void setUserRoles(List<UserRole> userRoles) {
+        this.userRoles = userRoles;
+    }
+
     // Methods
     @Override
     public String toString() {
@@ -137,8 +152,8 @@ public class User {
                 ", city='" + city + '\'' +
                 ", state='" + state + '\'' +
                 ", zipCode='" + zipCode + '\'' +
+                ", userRoles=" + userRoles +
                 '}';
     }
-
 
 }

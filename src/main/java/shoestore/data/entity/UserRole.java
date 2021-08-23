@@ -11,8 +11,12 @@ public class UserRole {
     @Column(name = "id")
     private Integer id;
 
-    @Column(name = "userId")
-    private Integer userId;
+    //@Column(name = "userId")
+    //private Integer userId;
+
+    @ManyToOne()
+    @JoinColumn(name = "userId")
+    private User userObject;
 
     @Column(name = "role")
     private String role;
@@ -30,13 +34,13 @@ public class UserRole {
         this.id = id;
     }
 
-    public Integer getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }
+    //public Integer getUserId() {
+    //    return userId;
+    //}
+    //
+    //public void setUserId(Integer userId) {
+    //    this.userId = userId;
+    //}
 
     public String getRole() {
         return role;
@@ -51,7 +55,7 @@ public class UserRole {
     public String toString() {
         return "UserRole{" +
                 "id=" + id +
-                ", userId=" + userId +
+                //", userId=" + userId +
                 ", role='" + role + '\'' +
                 '}';
     }

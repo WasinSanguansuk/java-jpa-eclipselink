@@ -3,3 +3,20 @@
 
 Follow this YouTube video for setting up the JPA project using eclipseLink
 https://www.youtube.com/watch?v=jB2uSJX7jnM
+
+(didn't use this one for this project)
+The PPT on Per Scholas, Week 6, Wednesday is explaining how to use the "mariadb-java-client" with the project (demo2 - for mariadb)
+
+Follow this YouTube video to download and put the "mysql-connector-java" to the project
+- https://www.youtube.com/watch?v=e8g9eNnFpHQ&t=115s
+
+Follow this YouTube video to configure the data sources
+- https://www.youtube.com/watch?v=-yiL99KFeng
+
+Set the SQL Dialects to MariaDB
+> File > Settings > Languages & Frameworks > SQL Dialects
+> Set the Global SQL Dialects and Project SQL Dialects to "MariaDB"
+
+(didn't use this one for this project; all junit dependencies are already added)
+Follow this web page to set up the junit dependency on IntelliJ for the project
+- https://www.jetbrains.com/help/idea/junit.html

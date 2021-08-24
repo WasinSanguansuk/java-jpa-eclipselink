@@ -20,3 +20,7 @@ Set the SQL Dialects to MariaDB
 (didn't use this one for this project; all junit dependencies are already added)
 Follow this web page to set up the junit dependency on IntelliJ for the project
 - https://www.jetbrains.com/help/idea/junit.html
+
+(didn't use this one for this project; this project uses mysql-connector-java-8.0.26.jar file)
+Use this web side to find dependencies
+- https://mvnrepository.com/artifact/mysql/mysql-connector-java/8.0.26

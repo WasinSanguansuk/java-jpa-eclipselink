@@ -10,65 +10,142 @@ import java.util.List;
 
 public class UserDao implements IUserDao {
 
-    private EntityManager entitymanager = null;
+    private EntityManagerFactory entityManagerFactory = null;
+    private EntityManager entityManager = null;
 
     public UserDao() {
-        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default");
-        entitymanager = entityManagerFactory.createEntityManager();
+
+    }
+
+    public void createEntityManager() {
+        this.entityManagerFactory = Persistence.createEntityManagerFactory("jpa-eclipselink");
+        this.entityManager = this.entityManagerFactory.createEntityManager();
+    }
+
+    public void closeEntityManager() {
+        this.entityManager.close();
+        this.entityManagerFactory.close();
     }
 
     @Override
     public List<User> findAllUsers() {
+        //createEntityManager();
+
         String sql = "SELECT u FROM User u";
 
-        TypedQuery<User> query = entitymanager.createQuery(sql, User.class);
+        TypedQuery<User> query = entityManager.createQuery(sql, User.class);
         List<User> users = query.getResultList();
 
+        //closeEntityManager();
         return users;
     }
 
     @Override
-    public List<User> findUserById(Integer idIn) {
-        String sql = "SELECT u FROM User u WHERE u.id = :idValue";
+    public User findUserById(Integer idIn) {
+        //createEntityManager();
 
-        TypedQuery<User> query = entitymanager.createQuery(sql, User.class);
-        query.setParameter("idValue", idIn);
-        List<User> users = query.getResultList();
+        //String sql = "SELECT u FROM User u WHERE u.id = :idValue";
+        //TypedQuery<User> query = entitymanager.createQuery(sql, User.class);
+        //query.setParameter("idValue", idIn);
+        //List<User> users = query.getResultList();
 
-        return users;
+        User user = this.entityManager.find(User.class, idIn);
+
+        //closeEntityManager();
+        return user;
     }
 
     @Override
     public List<User> findUserByLastName(String lastNameIn) {
+        //createEntityManager();
+
         String sql = "SELECT u FROM User u WHERE u.lastName = :lastNameValue";
 
-        TypedQuery<User> query = entitymanager.createQuery(sql, User.class);
+        TypedQuery<User> query = entityManager.createQuery(sql, User.class);
         query.setParameter("lastNameValue", lastNameIn);
         List<User> users = query.getResultList();
 
+        //closeEntityManager();
         return users;
     }
 
     @Override
-    public User addUser(User userIn) {
-        entitymanager.getTransaction().begin();
-        entitymanager.persist(userIn);
-        entitymanager.getTransaction().commit();
+    public User updateUserAddress(User userIn, String addressIn, String cityIn, String stateIn, String zipCodeIn) {
+        //createEntityManager();
 
+        //
+
+        //closeEntityManager();
+        return userIn;
+    }
+
+    @Override
+    public User updateUserPhone(User userIn, String phoneIn) {
+        //createEntityManager();
+
+        userIn.setPhone(phoneIn);
+
+        entityManager.getTransaction().begin();
+        entityManager.persist(userIn);
+        entityManager.getTransaction().commit();
+
+        //closeEntityManager();
+        return userIn;
+    }
+
+    @Override
+    public User updateUserPhoneById(Integer idIn, String phoneIn) {
+        //createEntityManager();
+
+        User user = this.entityManager.find(User.class, idIn);
+
+        user.setPhone(phoneIn);
+
+        entityManager.getTransaction().begin();
+        entityManager.persist(user);
+        entityManager.getTransaction().commit();
+
+        //closeEntityManager();
+        return user;
+    }
+
+    @Override
+    public User addUser(User userIn) {
+        //createEntityManager();
+
+        entityManager.getTransaction().begin();
+        entityManager.persist(userIn);
+        entityManager.getTransaction().commit();
+
+        //closeEntityManager();
         return userIn;
     }
 
     @Override
     public User removeUser(User userIn) {
-        entitymanager.getTransaction().begin();
-        entitymanager.remove(userIn);
-        entitymanager.getTransaction().commit();
+        //createEntityManager();
 
+        entityManager.getTransaction().begin();
+        entityManager.remove(userIn);
+        entityManager.getTransaction().commit();
+
+        //closeEntityManager();
         return userIn;
     }
 
     @Override
-    public User updateUserAddressById(Integer idIn, String addressIn, String cityIn, String stateIn, String zipCodeIn) {
-        return null;
+    public User removeUserById(Integer idIn) {
+        //createEntityManager();
+
+        User user = this.entityManager.find(User.class, idIn);
+
+        entityManager.getTransaction().begin();
+        entityManager.remove(user);
+        entityManager.getTransaction().commit();
+
+        //closeEntityManager();
+        return user;
     }
+
+
 }

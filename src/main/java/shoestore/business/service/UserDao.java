@@ -14,7 +14,6 @@ public class UserDao implements IUserDao {
     private EntityManager entityManager = null;
 
     public UserDao() {
-
     }
 
     public void createEntityManager() {
@@ -31,10 +30,20 @@ public class UserDao implements IUserDao {
     public List<User> findAllUsers() {
         //createEntityManager();
 
-        String sql = "SELECT u FROM User u";
+        //String sql = "SELECT u FROM User u";
 
-        TypedQuery<User> query = entityManager.createQuery(sql, User.class);
+        //TypedQuery<User> query = entityManager.createQuery(sql, User.class);
+        //TypedQuery<User> query = entityManager.createQuery(User.findAllUsersQuery, User.class);
+        TypedQuery<User> query = entityManager.createNamedQuery("findAllUsersQuery", User.class);
         List<User> users = query.getResultList();
+
+        // Query interface methods:
+        //      getResultList()
+        //      int executeUpdate()
+        //      int getFirstResult()
+        //      Query setFirstResult(int startPosition)
+        //      Query setMaxResult(int maxResult)
+        //      int getMaxResults()
 
         //closeEntityManager();
         return users;
@@ -59,11 +68,16 @@ public class UserDao implements IUserDao {
     public List<User> findUserByLastName(String lastNameIn) {
         //createEntityManager();
 
-        String sql = "SELECT u FROM User u WHERE u.lastName = :lastNameValue";
+        //String sql = "SELECT u FROM User u WHERE u.lastName = :lastNameValue";
 
-        TypedQuery<User> query = entityManager.createQuery(sql, User.class);
-        query.setParameter("lastNameValue", lastNameIn);
-        List<User> users = query.getResultList();
+        //TypedQuery<User> query = entityManager.createQuery(sql, User.class);
+        //TypedQuery<User> query = entityManager.createQuery(User.findUsersByLastNameQuery, User.class);
+        //TypedQuery<User> query = entityManager.createNamedQuery("findUsersByLastNameQuery", User.class);
+        //query.setParameter("lastNameValue", lastNameIn);
+        //List<User> users = query.getResultList();
+        List<User> users = entityManager.createNamedQuery("findUsersByLastNameQuery", User.class)
+                .setParameter("lastNameValue", lastNameIn)
+                .getResultList();
 
         //closeEntityManager();
         return users;

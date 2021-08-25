@@ -42,6 +42,14 @@ public class UserRole {
     //    this.userId = userId;
     //}
 
+    public User getUserObject() {
+        return userObject;
+    }
+
+    public void setUserObject(User userObject) {
+        this.userObject = userObject;
+    }
+
     public String getRole() {
         return role;
     }
@@ -59,6 +67,5 @@ public class UserRole {
                 ", role='" + role + '\'' +
                 '}';
     }
-
 
 }

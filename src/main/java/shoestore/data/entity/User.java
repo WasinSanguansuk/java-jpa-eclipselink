@@ -7,43 +7,60 @@ import java.util.List;
 
 @Entity
 @Table(name = "users")
+@NamedQuery(name = "findAllUsersQuery", query = "SELECT u FROM User u")
+@NamedQuery(name = "findUsersByLastNameQuery", query = "SELECT u FROM User u WHERE u.lastName = :lastNameValue")
 public class User {
     // Data
+    //// "SELECT * FROM users;"
+    //public final static String findAllUsersQuery = "SELECT u FROM User u"; // don't need this
+    //// "SELECT * FROM users WHERE lastName = ?"
+    //public final static String findUsersByLastNameQuery = "SELECT u FROM User u WHERE u.lastName = :lastNameValue"; // don't need this
+
+    @Basic(optional = false, fetch = FetchType.LAZY)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
 
+    @Basic(optional = false, fetch = FetchType.LAZY)
     @Column(name = "firstName")
     private String firstName;
 
+    @Basic(optional = false, fetch = FetchType.LAZY)
     @Column(name = "lastName")
     private String lastName;
 
+    @Basic(optional = false, fetch = FetchType.LAZY)
     @Column(name = "email")
     private String email;
 
+    @Basic(optional = false, fetch = FetchType.LAZY)
     @Column(name = "password")
     private String password;
 
+    @Basic(optional = false, fetch = FetchType.LAZY)
     @Column(name = "phone")
     private String phone;
 
+    @Basic(optional = false, fetch = FetchType.LAZY)
     @Column(name = "address")
     private String address;
 
+    @Basic(optional = false, fetch = FetchType.LAZY)
     @Column(name = "city")
     private String city;
 
+    @Basic(optional = false, fetch = FetchType.LAZY)
     @Column(name = "state")
     private String state;
 
+    @Basic(optional = false, fetch = FetchType.LAZY)
     @Column(name = "zipCode")
     private String zipCode;
 
     //@Basic(fetch = FetchType.LAZY)
     @OneToMany(mappedBy = "userObject")
-    private List<UserRole> userRoles = new ArrayList<UserRole>();
+    private List<UserRole> userRoles = new ArrayList<>();
 
     // Constructors
     public User() {

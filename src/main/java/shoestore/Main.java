@@ -12,6 +12,7 @@ public class Main {
 
     public static void main(String[] args) {
 
+        // Set up EntityManager
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("jpa-eclipselink");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
@@ -143,7 +144,7 @@ public class Main {
         }
         System.out.println("---------- ---------- ---------- ---------- ----------");
         {
-            System.out.println("Better way");
+            System.out.println("Good way");
 
             int idIn = 2;
             //int idIn = 7;
@@ -195,6 +196,23 @@ public class Main {
                 System.out.println(user);
             }
 
+        }
+        System.out.println("---------- ---------- ---------- ---------- ----------");
+        {
+            System.out.println("Another example for JPQL");
+
+            String lastNameIn = "Smith";
+
+            String sql = "SELECT u FROM User u WHERE u.lastName = :lastNameValue";
+
+            TypedQuery<User> query = entityManager.createQuery(sql, User.class);
+            query.setParameter("lastNameValue", lastNameIn);
+
+            List<User> users = query.getResultList();
+
+            for (User u : users) {
+                System.out.println(u.toString());
+            }
         }
         System.out.println("---------- ---------- ---------- ---------- ----------");
         {
@@ -348,12 +366,14 @@ public class Main {
             IUserDao iUserDao = new UserDao();
             iUserDao.createEntityManager();
 
-            User user = iUserDao.findUserById(3);
-
+            User user = iUserDao.findUserById(5);
             System.out.println(user);
+
             for (UserRole role : user.getUserRoles()) {
                 System.out.println(role);
             }
+
+            System.out.println(user);
 
             iUserDao.closeEntityManager();
         }
@@ -375,6 +395,7 @@ public class Main {
         }
         System.out.println("---------- ---------- ---------- ---------- ----------");
 
+        // Clean up
         entityManager.close();
         entityManagerFactory.close();
     }

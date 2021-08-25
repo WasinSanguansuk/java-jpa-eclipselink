@@ -14,6 +14,12 @@ public class UserDao implements IUserDao {
     private EntityManager entityManager = null;
 
     public UserDao() {
+        this.createEntityManager();
+    }
+
+    protected void finalize()
+    {
+        this.closeEntityManager();
     }
 
     public void createEntityManager() {

@@ -1,4 +1,4 @@
-package shoestore_test.business_test;
+package shoestore.business.service;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

@@ -1,4 +1,4 @@
-package shoestore_test.business_test;
+package shoestore.business.service;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
@@ -7,7 +7,6 @@ import shoestore.business.service.IUserDao;
 import shoestore.business.service.UserDao;
 import shoestore.data.entity.User;
 
-import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;

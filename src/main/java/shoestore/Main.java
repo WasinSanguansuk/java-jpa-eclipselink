@@ -50,6 +50,42 @@ public class Main {
         }
         System.out.println("---------- ---------- ---------- ---------- ----------");
         {
+            System.out.println("Inserting new users at id 1 - It will generate new ids for these users");
+
+            //User newUser1 = new User();
+            //newUser1.setId(1);
+            //newUser1.setFirstName("Jane");
+            //newUser1.setLastName("Smith");
+            //newUser1.setEmail("new1_jane.smith@gmail.com");
+            //newUser1.setPassword("jane123");
+            //newUser1.setPhone("(312) 999-1111");
+            //newUser1.setAddress("2400 N Ashland Ave");
+            //newUser1.setCity("Chicago");
+            //newUser1.setState("IL");
+            //newUser1.setZipCode("60640");
+            //
+            //User newUser2 = new User();
+            //newUser2.setId(1);
+            //newUser2.setFirstName("Jane");
+            //newUser2.setLastName("Smith");
+            //newUser2.setEmail("new2_jane.smith@gmail.com");
+            //newUser2.setPassword("jane123");
+            //newUser2.setPhone("(312) 999-1111");
+            //newUser2.setAddress("2400 N Ashland Ave");
+            //newUser2.setCity("Chicago");
+            //newUser2.setState("IL");
+            //newUser2.setZipCode("60640");
+            //
+            //System.out.println(newUser1);
+            //System.out.println(newUser2);
+            //
+            //entityManager.getTransaction().begin();
+            //entityManager.persist(newUser1);
+            //entityManager.persist(newUser2);
+            //entityManager.getTransaction().commit();
+        }
+        System.out.println("---------- ---------- ---------- ---------- ----------");
+        {
             System.out.println("Change the phone number of id 5 (the new user)");
 
             //User user = entityManager.find(User.class, 5);
@@ -219,37 +255,30 @@ public class Main {
             System.out.println("IUserDao - findAllUsers()");
 
             IUserDao iUserDao = new UserDao();
-            //iUserDao.createEntityManager();
 
             List<User> users = iUserDao.findAllUsers();
 
             for (User user : users) {
                 System.out.println(user);
             }
-
-            //iUserDao.closeEntityManager();
         }
         System.out.println("---------- ---------- ---------- ---------- ----------");
         {
             System.out.println("IUserDao - findUserById()");
 
             IUserDao iUserDao = new UserDao();
-            //iUserDao.createEntityManager();
 
             Integer idIn = 2;
 
             User user = iUserDao.findUserById(idIn);
 
             System.out.println(user);
-
-            //iUserDao.closeEntityManager();
         }
         System.out.println("---------- ---------- ---------- ---------- ----------");
         {
             System.out.println("IUserDao - findUserByLastName()");
 
             IUserDao iUserDao = new UserDao();
-            //iUserDao.createEntityManager();
 
             String lastNameIn = "Smith";
 
@@ -258,42 +287,24 @@ public class Main {
             for (User user : users) {
                 System.out.println(user);
             }
-
-            //iUserDao.closeEntityManager();
-        }
-        System.out.println("---------- ---------- ---------- ---------- ----------");
-        {
-            System.out.println("IUserDao - updateUserPhone()");
-
-            IUserDao iUserDao = new UserDao();
-            //iUserDao.createEntityManager();
-
-            User user = iUserDao.findUserById(2);
-            System.out.println("Old phone: " + user.getPhone());
-
-            iUserDao.updateUserPhone(user, "(773) 111-1111");
-            System.out.println("New phone: " + user.getPhone());
-
-            //iUserDao.closeEntityManager();
         }
         System.out.println("---------- ---------- ---------- ---------- ----------");
         {
             System.out.println("IUserDao - updateUserPhoneById()");
 
             IUserDao iUserDao = new UserDao();
-            //iUserDao.createEntityManager();
 
-            User user = iUserDao.updateUserPhoneById(2, "(312) 123-4444");
+            User user = iUserDao.findUserById(2);
+            System.out.println("Old phone: " + user.getPhone());
+
+            user = iUserDao.updateUserPhoneById(2, "(312) 123-4455");
             System.out.println("New phone: " + user.getPhone());
-
-            //iUserDao.closeEntityManager();
         }
         System.out.println("---------- ---------- ---------- ---------- ----------");
         {
             System.out.println("IUserDao - addUser()");
 
             IUserDao iUserDao = new UserDao();
-            //iUserDao.createEntityManager();
 
             User newUser = new User();
             newUser.setFirstName("testFirstName");
@@ -316,15 +327,12 @@ public class Main {
             for (User u : allUsers) {
                 System.out.println(u);
             }
-
-            //iUserDao.closeEntityManager();
         }
         System.out.println("---------- ---------- ---------- ---------- ----------");
         {
-            System.out.println("IUserDao - removeUser()");
+            System.out.println("IUserDao - removeUserById()");
 
             IUserDao iUserDao = new UserDao();
-            //iUserDao.createEntityManager();
 
             String lastNameIn = "testLastName";
 
@@ -333,7 +341,7 @@ public class Main {
             for (User user : users) {
                 System.out.print("Going to remove ---> ");
                 System.out.println(user);
-                User removedUser = iUserDao.removeUser(user);
+                User removedUser = iUserDao.removeUserById(user.getId());
                 System.out.print("After remove ---> ");
                 System.out.println(user);
                 System.out.println(removedUser);
@@ -345,26 +353,12 @@ public class Main {
             for (User u : allUsers) {
                 System.out.println(u);
             }
-
-            //iUserDao.closeEntityManager();
-        }
-        System.out.println("---------- ---------- ---------- ---------- ----------");
-        {
-            System.out.println("IUserDao - removeUserById()");
-
-            IUserDao iUserDao = new UserDao();
-            //iUserDao.createEntityManager();
-
-            //iUserDao.removeUserById(6);
-
-            //iUserDao.closeEntityManager();
         }
         System.out.println("---------- ---------- ---------- ---------- ----------");
         {
             System.out.println("OneToMany and ManyToOne");
 
             IUserDao iUserDao = new UserDao();
-            //iUserDao.createEntityManager();
 
             User user = iUserDao.findUserById(5);
             System.out.println(user);
@@ -374,8 +368,6 @@ public class Main {
             }
 
             System.out.println(user);
-
-            //iUserDao.closeEntityManager();
         }
         System.out.println("---------- ---------- ---------- ---------- ----------");
         {

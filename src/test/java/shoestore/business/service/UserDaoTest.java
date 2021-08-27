@@ -1,8 +1,6 @@
 package shoestore.business.service;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import shoestore.business.service.IUserDao;
 import shoestore.business.service.UserDao;
 import shoestore.data.entity.User;
@@ -24,9 +22,27 @@ public class UserDaoTest {
         iUserDao = new UserDao();
     }
 
+    @BeforeEach
+    public void beforeEachTest() {
+        System.out.println("@BeforeEach - beforeEachTest()");
+
+    }
+
+    @AfterEach
+    public void afterEachTest() {
+        System.out.println("@AfterEach - afterEachTest()");
+
+    }
+
+    @AfterAll
+    public static void tareDown() {
+        System.out.println("@AfterAll - tareDown()");
+
+    }
+
     @Test
     public void testGetUserById() {
-        System.out.println("@Test - testGetUserById");
+        System.out.println("@Test - testGetUserById()");
 
         // given
         User expected = new User();
@@ -44,7 +60,7 @@ public class UserDaoTest {
     // bad test; shouldn't modify the database
     @Test
     public void testNoDuplicateEmail() {
-        System.out.println("@Test - testDuplicateEmail");
+        System.out.println("@Test - testDuplicateEmail()");
 
         // given
         User newUser = new User();
@@ -73,7 +89,7 @@ public class UserDaoTest {
     // bad test; shouldn't modify the database
     @Test
     public void testNoNullEmail() {
-        System.out.println("@Test - testDuplicateEmail");
+        System.out.println("@Test - testNoNullEmail()");
 
         // given
         User newUser = new User();
@@ -106,6 +122,8 @@ public class UserDaoTest {
     // testing
     @Test
     public void testIfTwoObjectsAreEqual() {
+        System.out.println("@Test - testIfTwoObjectsAreEqual()");
+
         User userOne = new User();
         userOne.setPhone("(773) 888-1234");
         User userTwo = new User();
@@ -123,12 +141,15 @@ public class UserDaoTest {
     // testing
     @Test
     public void testContainsUser() {
+        System.out.println("@Test - testContainsUser()");
 
     }
 
     // testing
     @Test
     public void testComparingArrays() {
+        System.out.println("@Test - testComparingArrays()");
+
         int[] arr1 = { 1, 2, 3 };
         //int[] arr2 = { 1, 3, 2 };
         int[] arr2 = { 1, 2, 3 };
@@ -139,6 +160,8 @@ public class UserDaoTest {
     // testing
     @Test
     public void testComparingLists() {
+        System.out.println("@Test - testComparingLists()");
+
         List<Integer> list1 = new ArrayList<>(Arrays.asList(1, 2, 3));
         List<Integer> list2 = new ArrayList<>(Arrays.asList(1, 2, 3));
 

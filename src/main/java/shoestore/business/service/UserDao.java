@@ -14,13 +14,14 @@ public class UserDao implements IUserDao {
     private EntityManager entityManager = null;
 
     public UserDao() {
-        this.createEntityManager();
+        //this.createEntityManager();
     }
 
-    protected void finalize()
-    {
-        this.closeEntityManager();
-    }
+    //protected void finalize()
+    //{
+    //    System.out.println("finalize()");
+    //    this.closeEntityManager();
+    //}
 
     public void createEntityManager() {
         this.entityManagerFactory = Persistence.createEntityManagerFactory("jpa-eclipselink");
@@ -34,7 +35,7 @@ public class UserDao implements IUserDao {
 
     @Override
     public List<User> findAllUsers() {
-        //createEntityManager();
+        createEntityManager();
 
         //String sql = "SELECT u FROM User u";
 
@@ -51,13 +52,13 @@ public class UserDao implements IUserDao {
         //      Query setMaxResult(int maxResult)
         //      int getMaxResults()
 
-        //closeEntityManager();
+        closeEntityManager();
         return users;
     }
 
     @Override
     public User findUserById(Integer idIn) {
-        //createEntityManager();
+        createEntityManager();
 
         //String sql = "SELECT u FROM User u WHERE u.id = :idValue";
         //TypedQuery<User> query = entitymanager.createQuery(sql, User.class);
@@ -66,13 +67,13 @@ public class UserDao implements IUserDao {
 
         User user = this.entityManager.find(User.class, idIn);
 
-        //closeEntityManager();
+        closeEntityManager();
         return user;
     }
 
     @Override
     public List<User> findUserByLastName(String lastNameIn) {
-        //createEntityManager();
+        createEntityManager();
 
         //String sql = "SELECT u FROM User u WHERE u.lastName = :lastNameValue";
 
@@ -85,37 +86,32 @@ public class UserDao implements IUserDao {
                 .setParameter("lastNameValue", lastNameIn)
                 .getResultList();
 
-        //closeEntityManager();
+        closeEntityManager();
         return users;
     }
 
     @Override
-    public User updateUserAddress(User userIn, String addressIn, String cityIn, String stateIn, String zipCodeIn) {
-        //createEntityManager();
+    public User updateUserAddressById(Integer idIn, String addressIn, String cityIn, String stateIn, String zipCodeIn) {
+        createEntityManager();
 
-        //
+        User user = this.entityManager.find(User.class, idIn);
 
-        //closeEntityManager();
-        return userIn;
-    }
-
-    @Override
-    public User updateUserPhone(User userIn, String phoneIn) {
-        //createEntityManager();
-
-        userIn.setPhone(phoneIn);
+        user.setAddress(addressIn);
+        user.setCity(cityIn);
+        user.setState(stateIn);
+        user.setZipCode(zipCodeIn);
 
         entityManager.getTransaction().begin();
-        entityManager.persist(userIn);
+        entityManager.persist(user);
         entityManager.getTransaction().commit();
 
-        //closeEntityManager();
-        return userIn;
+        closeEntityManager();
+        return user;
     }
 
     @Override
     public User updateUserPhoneById(Integer idIn, String phoneIn) {
-        //createEntityManager();
+        createEntityManager();
 
         User user = this.entityManager.find(User.class, idIn);
 
@@ -125,37 +121,25 @@ public class UserDao implements IUserDao {
         entityManager.persist(user);
         entityManager.getTransaction().commit();
 
-        //closeEntityManager();
+        closeEntityManager();
         return user;
     }
 
     @Override
     public User addUser(User userIn) {
-        //createEntityManager();
+        createEntityManager();
 
         entityManager.getTransaction().begin();
         entityManager.persist(userIn);
         entityManager.getTransaction().commit();
 
-        //closeEntityManager();
-        return userIn;
-    }
-
-    @Override
-    public User removeUser(User userIn) {
-        //createEntityManager();
-
-        entityManager.getTransaction().begin();
-        entityManager.remove(userIn);
-        entityManager.getTransaction().commit();
-
-        //closeEntityManager();
+        closeEntityManager();
         return userIn;
     }
 
     @Override
     public User removeUserById(Integer idIn) {
-        //createEntityManager();
+        createEntityManager();
 
         User user = this.entityManager.find(User.class, idIn);
 
@@ -163,7 +147,7 @@ public class UserDao implements IUserDao {
         entityManager.remove(user);
         entityManager.getTransaction().commit();
 
-        //closeEntityManager();
+        closeEntityManager();
         return user;
     }
 

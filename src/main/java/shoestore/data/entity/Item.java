@@ -6,11 +6,11 @@ import jakarta.persistence.*;
 @Table(name = "items")
 public class Item {
 
-    enum Genders {
+    enum Gender {
         MEN, WOMEN, UNISEX, KIDS
     }
 
-    enum Categories {
+    enum Category {
         CASUAL, RUNNING, HIKING, TRAINING, BASKETBALL, BOOTS, SANDALS
     }
 
@@ -27,10 +27,10 @@ public class Item {
     private String name;
 
     @Column(name = "gender")
-    private Genders gender;
+    private Gender gender;
 
     @Column(name = "category")
-    private Categories category;
+    private Category category;
 
     @Column(name = "starRating")
     private Double starRating;
@@ -70,19 +70,19 @@ public class Item {
         this.name = name;
     }
 
-    public Genders getGender() {
+    public Gender getGender() {
         return gender;
     }
 
-    public void setGender(Genders gender) {
+    public void setGender(Gender gender) {
         this.gender = gender;
     }
 
-    public Categories getCategory() {
+    public Category getCategory() {
         return category;
     }
 
-    public void setCategory(Categories category) {
+    public void setCategory(Category category) {
         this.category = category;
     }
 

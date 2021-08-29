@@ -7,7 +7,7 @@
         <setting name="provider-name" value="EclipseLink" />
         <datasource-mapping>
           <factory-entry name="default" value="3ab721af-24cd-4760-8f9c-453919c3b234" />
-          <factory-entry name="jpa-eclipselink" />
+          <factory-entry name="jpa-eclipselink" value="3ab721af-24cd-4760-8f9c-453919c3b234" />
         </datasource-mapping>
         <naming-strategy-map />
         <deploymentDescriptor name="persistence.xml" url="file://$MODULE_DIR$/src/main/resources/META-INF/persistence.xml" />

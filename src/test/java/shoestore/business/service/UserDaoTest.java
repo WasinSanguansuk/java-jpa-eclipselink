@@ -1,10 +1,13 @@
 package shoestore.business.service;
 
+import jakarta.persistence.RollbackException;
+import org.eclipse.persistence.exceptions.DatabaseException;
 import org.junit.jupiter.api.*;
 import shoestore.business.service.IUserDao;
 import shoestore.business.service.UserDao;
 import shoestore.data.entity.User;
 
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -23,25 +26,26 @@ public class UserDaoTest {
     }
 
     @BeforeEach
-    public void beforeEachTest() {
-        System.out.println("@BeforeEach - beforeEachTest()");
+    public void queryData() {
+        System.out.println("@BeforeEach - queryData()");
 
     }
 
     @AfterEach
-    public void afterEachTest() {
-        System.out.println("@AfterEach - afterEachTest()");
+    public void resetQuery() {
+        System.out.println("@AfterEach - resetQuery()");
 
     }
 
     @AfterAll
-    public static void tareDown() {
-        System.out.println("@AfterAll - tareDown()");
+    public static void tearDown() {
+        System.out.println("@AfterAll - tearDown()");
 
     }
 
     @Test
     public void testGetUserById() {
+        System.out.println("---------- ---------- ---------- ---------- ----------");
         System.out.println("@Test - testGetUserById()");
 
         // given
@@ -60,6 +64,7 @@ public class UserDaoTest {
     // bad test; shouldn't modify the database
     @Test
     public void testNoDuplicateEmail() {
+        System.out.println("---------- ---------- ---------- ---------- ----------");
         System.out.println("@Test - testDuplicateEmail()");
 
         // given
@@ -84,11 +89,20 @@ public class UserDaoTest {
                 Assertions.assertTrue(true);
             }
         }
+
+        System.out.println("----------");
+
+        //assertThrows(SQLIntegrityConstraintViolationException.class, () -> {      // fail
+        //assertThrows(DatabaseException.class, () -> {                             // fail
+        assertThrows(RollbackException.class, () -> {                               // pass
+            iUserDao.addUser(newUser);
+        });
     }
 
     // bad test; shouldn't modify the database
     @Test
     public void testNoNullEmail() {
+        System.out.println("---------- ---------- ---------- ---------- ----------");
         System.out.println("@Test - testNoNullEmail()");
 
         // given
@@ -117,11 +131,20 @@ public class UserDaoTest {
                 Assertions.assertTrue(true);
             }
         }
+
+        System.out.println("----------");
+
+        //assertThrows(SQLIntegrityConstraintViolationException.class, () -> {      // fail
+        // assertThrows(DatabaseException.class, () -> {                            // fail
+        assertThrows(RollbackException.class, () -> {                               // pass
+            iUserDao.addUser(newUser);
+        });
     }
 
     // testing
     @Test
     public void testIfTwoObjectsAreEqual() {
+        System.out.println("---------- ---------- ---------- ---------- ----------");
         System.out.println("@Test - testIfTwoObjectsAreEqual()");
 
         User userOne = new User();
@@ -141,6 +164,7 @@ public class UserDaoTest {
     // testing
     @Test
     public void testContainsUser() {
+        System.out.println("---------- ---------- ---------- ---------- ----------");
         System.out.println("@Test - testContainsUser()");
 
     }
@@ -148,6 +172,7 @@ public class UserDaoTest {
     // testing
     @Test
     public void testComparingArrays() {
+        System.out.println("---------- ---------- ---------- ---------- ----------");
         System.out.println("@Test - testComparingArrays()");
 
         int[] arr1 = { 1, 2, 3 };
@@ -160,6 +185,7 @@ public class UserDaoTest {
     // testing
     @Test
     public void testComparingLists() {
+        System.out.println("---------- ---------- ---------- ---------- ----------");
         System.out.println("@Test - testComparingLists()");
 
         List<Integer> list1 = new ArrayList<>(Arrays.asList(1, 2, 3));
@@ -169,5 +195,17 @@ public class UserDaoTest {
 
         assertTrue(list1.equals(list2));
     }
+
+    // testing
+    @Test
+    public void testNumberFormatException() {
+        System.out.println("---------- ---------- ---------- ---------- ----------");
+        System.out.println("@Test - testNumberFormatException()");
+
+        assertThrows(NumberFormatException.class, () -> {
+            Integer.parseInt("Five"); // This line will throw NumberFormatException
+        });
+    }
+
 
 }

@@ -1,8 +1,9 @@
 package shoestore;
 
 import jakarta.persistence.*;
-import shoestore.business.service.UserDao;
-import shoestore.business.service.IUserDao;
+import shoestore.business.service.*;
+import shoestore.data.entity.Order;
+import shoestore.data.entity.OrderDetail;
 import shoestore.data.entity.User;
 import shoestore.data.entity.UserRole;
 
@@ -371,11 +372,50 @@ public class Main {
         }
         System.out.println("---------- ---------- ---------- ---------- ----------");
         {
+            System.out.println("ManyToMany");
+            System.out.println("Many-to-Many Using a Composite Key");
+
+            IOrderDao iOrderDao = new OrderDao();
+
+            Order order = iOrderDao.findOrderById(3);
+            System.out.println(order);
+
+            for (OrderDetail orderDetail : order.getOrderDetails()) {
+                System.out.println(orderDetail);
+            }
+
+            System.out.println(order);
+        }
+        System.out.println("---------- ---------- ---------- ---------- ----------");
+        {
+            System.out.println("IUserRoleDao - findUserRoleById()");
+
+            IUserRoleDao iUserRoleDao = new UserRoleDao();
+
+            Integer idIn = 2;
+
+            UserRole userRole = iUserRoleDao.findUserRoleById(idIn);
+
+            System.out.println(userRole);
 
         }
         System.out.println("---------- ---------- ---------- ---------- ----------");
         {
+            System.out.println("IOrderDao - findOrderById()");
 
+            IOrderDao iOrderDao = new OrderDao();
+
+            Integer idIn = 2;
+
+            Order order = iOrderDao.findOrderById(idIn);
+
+            System.out.println(order);
+
+            for (OrderDetail orderDetail : order.getOrderDetails()) {
+                //System.out.println(orderDetail);
+            }
+
+            System.out.println(order);
         }
         System.out.println("---------- ---------- ---------- ---------- ----------");
         {

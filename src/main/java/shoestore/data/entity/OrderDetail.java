@@ -6,16 +6,26 @@ import jakarta.persistence.*;
 @Table(name = "orderdetails")
 public class OrderDetail {
     // Data
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Integer id;
+    //@Id
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
+    //@Column(name = "id")
+    //private Integer id;
+    @EmbeddedId
+    OrderDetailKey key;
 
-    @Column(name = "orderId")
-    private Integer orderId;
+    //@Column(name = "orderId")
+    //private Integer orderId;
+    @ManyToOne
+    @MapsId("orderId")
+    @JoinColumn(name = "orderId")
+    Order orderObject;
 
-    @Column(name = "productId")
-    private Integer productId;
+    //@Column(name = "productId")
+    //private Integer productId;
+    @ManyToOne
+    @MapsId("productId")
+    @JoinColumn(name = "productId")
+    Product productObject;
 
     @Column(name = "quantityOrdered")
     private Integer quantityOrdered;
@@ -25,28 +35,52 @@ public class OrderDetail {
     }
 
     // Getters and Setters
-    public Integer getId() {
-        return id;
+    //public Integer getId() {
+    //    return id;
+    //}
+    //
+    //public void setId(Integer id) {
+    //    this.id = id;
+    //}
+
+    //public Integer getOrderId() {
+    //    return orderId;
+    //}
+    //
+    //public void setOrderId(Integer orderId) {
+    //    this.orderId = orderId;
+    //}
+    //
+    //public Integer getProductId() {
+    //    return productId;
+    //}
+    //
+    //public void setProductId(Integer productId) {
+    //    this.productId = productId;
+    //}
+
+    public OrderDetailKey getKey() {
+        return key;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setKey(OrderDetailKey key) {
+        this.key = key;
     }
 
-    public Integer getOrderId() {
-        return orderId;
+    public Order getOrderObject() {
+        return orderObject;
     }
 
-    public void setOrderId(Integer orderId) {
-        this.orderId = orderId;
+    public void setOrderObject(Order orderObject) {
+        this.orderObject = orderObject;
     }
 
-    public Integer getProductId() {
-        return productId;
+    public Product getProductObject() {
+        return productObject;
     }
 
-    public void setProductId(Integer productId) {
-        this.productId = productId;
+    public void setProductObject(Product productObject) {
+        this.productObject = productObject;
     }
 
     public Integer getQuantityOrdered() {
@@ -61,9 +95,11 @@ public class OrderDetail {
     @Override
     public String toString() {
         return "OrderDetail{" +
-                "id=" + id +
-                ", orderId=" + orderId +
-                ", productId=" + productId +
+                "key=" + key +
+                //", orderId=" + orderId +
+                ", orderId=" + orderObject.getId() +
+                //", productId=" + productId +
+                ", productId=" + productObject.getId() +
                 ", quantityOrdered=" + quantityOrdered +
                 '}';
     }

@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -61,6 +62,7 @@ public class User {
 
     //@Basic(fetch = FetchType.LAZY)
     @OneToMany(mappedBy = "userObject")
+    //@OneToMany(targetEntity = UserRole.class) // Error
     private List<UserRole> userRoles = new ArrayList<>();
 
     // Constructors

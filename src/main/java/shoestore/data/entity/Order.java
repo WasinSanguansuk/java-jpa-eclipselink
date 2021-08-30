@@ -3,9 +3,11 @@ package shoestore.data.entity;
 import jakarta.persistence.*;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "orders")
+@NamedQuery(name = "findAllOrdersQuery", query = "SELECT o FROM Order o")
 public class Order {
 
     enum Status {
@@ -22,6 +24,7 @@ public class Order {
     private Integer customerId;
 
     @Column(name = "status")
+    @Enumerated(EnumType.STRING)
     private Status status;
 
     @Column(name = "orderedDate")
@@ -32,6 +35,16 @@ public class Order {
 
     @Column(name = "comments")
     private String comments;
+
+    //@ManyToMany
+    //@JoinTable(
+    //        name = "order_product",
+    //        joinColumns = @JoinColumn(name = "orderId"),
+    //        inverseJoinColumns = @JoinColumn(name = "productId"))
+    //List<Product> productsInOrder;
+
+    @OneToMany(mappedBy = "orderObject")
+    List<OrderDetail> orderDetails;
 
     // Constructors
     public Order() {
@@ -86,7 +99,27 @@ public class Order {
         this.comments = comments;
     }
 
+    public List<OrderDetail> getOrderDetails() {
+        return orderDetails;
+    }
+
+    public void setOrderDetails(List<OrderDetail> orderDetails) {
+        this.orderDetails = orderDetails;
+    }
+
     // Methods
+    //@Override
+    //public String toString() {
+    //    return "Order{" +
+    //            "id=" + id +
+    //            ", customerId=" + customerId +
+    //            ", status=" + status +
+    //            ", orderedDate=" + orderedDate +
+    //            ", shippedDate=" + shippedDate +
+    //            ", comments='" + comments + '\'' +
+    //            '}';
+    //}
+
     @Override
     public String toString() {
         return "Order{" +
@@ -96,6 +129,7 @@ public class Order {
                 ", orderedDate=" + orderedDate +
                 ", shippedDate=" + shippedDate +
                 ", comments='" + comments + '\'' +
+                ", orderDetails=" + orderDetails +
                 '}';
     }
 

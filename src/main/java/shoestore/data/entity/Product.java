@@ -2,6 +2,8 @@ package shoestore.data.entity;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "products")
 public class Product {
@@ -25,6 +27,12 @@ public class Product {
 
     @Column(name = "availability")
     private Integer availability;
+
+    //@ManyToMany(mappedBy = "productsInOrder")
+    //List<Order> orders;
+
+    @OneToMany(mappedBy = "productObject")
+    List<OrderDetail> orderDetails;
 
     // Constructors
     public Product() {
@@ -79,7 +87,27 @@ public class Product {
         this.availability = availability;
     }
 
+    public List<OrderDetail> getOrderDetails() {
+        return orderDetails;
+    }
+
+    public void setOrderDetails(List<OrderDetail> orderDetails) {
+        this.orderDetails = orderDetails;
+    }
+
     // Methods
+    //@Override
+    //public String toString() {
+    //    return "Product{" +
+    //            "id=" + id +
+    //            ", itemId=" + itemId +
+    //            ", color='" + color + '\'' +
+    //            ", size=" + size +
+    //            ", price=" + price +
+    //            ", availability=" + availability +
+    //            '}';
+    //}
+
     @Override
     public String toString() {
         return "Product{" +
@@ -89,6 +117,7 @@ public class Product {
                 ", size=" + size +
                 ", price=" + price +
                 ", availability=" + availability +
+                ", orderDetails=" + orderDetails +
                 '}';
     }
 

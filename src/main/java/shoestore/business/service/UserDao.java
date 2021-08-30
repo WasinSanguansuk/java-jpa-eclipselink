@@ -10,9 +10,11 @@ import java.util.List;
 
 public class UserDao implements IUserDao {
 
+    // Data
     private EntityManagerFactory entityManagerFactory = null;
     private EntityManager entityManager = null;
 
+    // Constructors
     public UserDao() {
         //this.createEntityManager();
     }
@@ -23,11 +25,14 @@ public class UserDao implements IUserDao {
     //    this.closeEntityManager();
     //}
 
+    // Methods
+    @Override
     public void createEntityManager() {
         this.entityManagerFactory = Persistence.createEntityManagerFactory("jpa-eclipselink");
         this.entityManager = this.entityManagerFactory.createEntityManager();
     }
 
+    @Override
     public void closeEntityManager() {
         this.entityManager.close();
         this.entityManagerFactory.close();

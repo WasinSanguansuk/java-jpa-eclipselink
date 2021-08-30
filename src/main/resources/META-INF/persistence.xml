@@ -7,6 +7,11 @@
 
         <class>shoestore.data.entity.User</class>
         <class>shoestore.data.entity.UserRole</class>
+        <class>shoestore.data.entity.Item</class>
+        <class>shoestore.data.entity.Product</class>
+        <class>shoestore.data.entity.Order</class>
+        <class>shoestore.data.entity.OrderDetail</class>
+        <class>shoestore.data.entity.OrderDetailKey</class>
 
         <properties>
             <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>

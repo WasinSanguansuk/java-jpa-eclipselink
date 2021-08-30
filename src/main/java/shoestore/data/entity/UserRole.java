@@ -4,7 +4,13 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "userroles")
+@NamedQuery(name = "findAllUserRolesQuery", query = "SELECT ur FROM UserRole ur")
 public class UserRole {
+
+    enum Role {
+        ADMIN, CUSTOMER
+    }
+
     // Data
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,11 +21,14 @@ public class UserRole {
     //private Integer userId;
 
     @ManyToOne()
-    @JoinColumn(name = "userId")
+    @JoinColumn(name = "userId", nullable=false)
     private User userObject;
 
     @Column(name = "role")
-    private String role;
+    //@Enumerated(EnumType.ORDINAL)
+    @Enumerated(EnumType.STRING)
+    //private String role;
+    private Role role;
 
     // Constructors
     public UserRole() {
@@ -50,20 +59,36 @@ public class UserRole {
         this.userObject = userObject;
     }
 
-    public String getRole() {
+    //public String getRole() {
+    //    return role;
+    //}
+    public Role getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    //public void setRole(String role) {
+    //    this.role = role;
+    //}
+    public void setRole(Role role) {
         this.role = role;
     }
 
     // Methods
+    //@Override
+    //public String toString() {
+    //    return "UserRole{" +
+    //            "id=" + id +
+    //            //", userId=" + userId +
+    //            ", role='" + role + '\'' +
+    //            '}';
+    //}
+
     @Override
     public String toString() {
         return "UserRole{" +
                 "id=" + id +
                 //", userId=" + userId +
+                ", userId=" + userObject.getId() +
                 ", role='" + role + '\'' +
                 '}';
     }

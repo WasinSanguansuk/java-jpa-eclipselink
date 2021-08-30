@@ -2,6 +2,7 @@ package shoestore.data.entity;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -27,11 +28,17 @@ public class Order {
     @Enumerated(EnumType.STRING)
     private Status status;
 
-    @Column(name = "orderedDate")
-    private Date orderedDate;
+    //@Column(name = "orderedDate")
+    //@Temporal(TemporalType.TIMESTAMP)
+    //private Date orderedDate;
+    @Column(name = "orderedDate", columnDefinition = "TIMESTAMP")
+    private LocalDateTime orderedDate;
 
-    @Column(name = "shippedDate")
-    private Date shippedDate;
+    //@Column(name = "shippedDate")
+    //@Temporal(TemporalType.TIMESTAMP)
+    //private Date shippedDate;
+    @Column(name = "shippedDate", columnDefinition = "TIMESTAMP")
+    private LocalDateTime shippedDate;
 
     @Column(name = "comments")
     private String comments;
@@ -75,19 +82,35 @@ public class Order {
         this.status = status;
     }
 
-    public Date getOrderedDate() {
+    //public Date getOrderedDate() {
+    //    return orderedDate;
+    //}
+    //
+    //public void setOrderedDate(Date orderedDate) {
+    //    this.orderedDate = orderedDate;
+    //}
+    //
+    //public Date getShippedDate() {
+    //    return shippedDate;
+    //}
+    //
+    //public void setShippedDate(Date shippedDate) {
+    //    this.shippedDate = shippedDate;
+    //}
+
+    public LocalDateTime getOrderedDate() {
         return orderedDate;
     }
 
-    public void setOrderedDate(Date orderedDate) {
+    public void setOrderedDate(LocalDateTime orderedDate) {
         this.orderedDate = orderedDate;
     }
 
-    public Date getShippedDate() {
+    public LocalDateTime getShippedDate() {
         return shippedDate;
     }
 
-    public void setShippedDate(Date shippedDate) {
+    public void setShippedDate(LocalDateTime shippedDate) {
         this.shippedDate = shippedDate;
     }
 

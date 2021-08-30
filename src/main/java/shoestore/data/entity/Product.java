@@ -10,22 +10,22 @@ public class Product {
     // Data
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "id", nullable = false)
     private Integer id;
 
-    @Column(name = "itemId")
+    @Column(name = "itemId", nullable = false)
     private Integer itemId;
 
-    @Column(name = "color")
+    @Column(name = "color", nullable = false)
     private String color;
 
-    @Column(name = "size")
+    @Column(name = "size", nullable = false)
     private Double size;
 
-    @Column(name = "price")
+    @Column(name = "price", nullable = false)
     private Double price;
 
-    @Column(name = "availability")
+    @Column(name = "availability", nullable = false)
     private Integer availability;
 
     //@ManyToMany(mappedBy = "productsInOrder")

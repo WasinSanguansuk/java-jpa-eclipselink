@@ -14,7 +14,7 @@ public class UserRole {
     // Data
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "id", nullable = false)
     private Integer id;
 
     //@Column(name = "userId")
@@ -24,7 +24,7 @@ public class UserRole {
     @JoinColumn(name = "userId", nullable=false)
     private User userObject;
 
-    @Column(name = "role")
+    @Column(name = "role", nullable = false)
     //@Enumerated(EnumType.ORDINAL)
     @Enumerated(EnumType.STRING)
     //private String role;

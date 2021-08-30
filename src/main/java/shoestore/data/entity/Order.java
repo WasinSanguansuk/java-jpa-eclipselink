@@ -18,20 +18,20 @@ public class Order {
     // Data
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "id", nullable = false)
     private Integer id;
 
-    @Column(name = "customerId")
+    @Column(name = "customerId", nullable = false)
     private Integer customerId;
 
-    @Column(name = "status")
+    @Column(name = "status", nullable = false)
     @Enumerated(EnumType.STRING)
     private Status status;
 
     //@Column(name = "orderedDate")
     //@Temporal(TemporalType.TIMESTAMP)
     //private Date orderedDate;
-    @Column(name = "orderedDate", columnDefinition = "TIMESTAMP")
+    @Column(name = "orderedDate", columnDefinition = "TIMESTAMP", nullable = false)
     private LocalDateTime orderedDate;
 
     //@Column(name = "shippedDate")

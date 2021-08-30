@@ -21,43 +21,43 @@ public class User {
     @Basic(optional = false, fetch = FetchType.LAZY)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "id", nullable = false)
     private Integer id;
 
     @Basic(optional = false, fetch = FetchType.LAZY)
-    @Column(name = "firstName")
+    @Column(name = "firstName", nullable = false)
     private String firstName;
 
     @Basic(optional = false, fetch = FetchType.LAZY)
-    @Column(name = "lastName")
+    @Column(name = "lastName", nullable = false)
     private String lastName;
 
     @Basic(optional = false, fetch = FetchType.LAZY)
-    @Column(name = "email")
+    @Column(name = "email", nullable = false)
     private String email;
 
     @Basic(optional = false, fetch = FetchType.LAZY)
-    @Column(name = "password")
+    @Column(name = "password", nullable = false)
     private String password;
 
     @Basic(optional = false, fetch = FetchType.LAZY)
-    @Column(name = "phone")
+    @Column(name = "phone", nullable = false)
     private String phone;
 
     @Basic(optional = false, fetch = FetchType.LAZY)
-    @Column(name = "address")
+    @Column(name = "address", nullable = false)
     private String address;
 
     @Basic(optional = false, fetch = FetchType.LAZY)
-    @Column(name = "city")
+    @Column(name = "city", nullable = false)
     private String city;
 
     @Basic(optional = false, fetch = FetchType.LAZY)
-    @Column(name = "state")
+    @Column(name = "state", nullable = false)
     private String state;
 
     @Basic(optional = false, fetch = FetchType.LAZY)
-    @Column(name = "zipCode")
+    @Column(name = "zipCode", nullable = false)
     private String zipCode;
 
     //@Basic(fetch = FetchType.LAZY)

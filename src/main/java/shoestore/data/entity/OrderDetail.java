@@ -17,17 +17,17 @@ public class OrderDetail {
     //private Integer orderId;
     @ManyToOne
     @MapsId("orderId")
-    @JoinColumn(name = "orderId")
+    @JoinColumn(name = "orderId", nullable = false)
     Order orderObject;
 
     //@Column(name = "productId")
     //private Integer productId;
     @ManyToOne
     @MapsId("productId")
-    @JoinColumn(name = "productId")
+    @JoinColumn(name = "productId", nullable = false)
     Product productObject;
 
-    @Column(name = "quantityOrdered")
+    @Column(name = "quantityOrdered", nullable = false)
     private Integer quantityOrdered;
 
     // Constructors

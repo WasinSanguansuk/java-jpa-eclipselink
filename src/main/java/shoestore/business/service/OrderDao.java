@@ -20,13 +20,13 @@ public class OrderDao implements IOrderDao {
     }
 
     // Methods
-    @Override
+    //@Override
     public void createEntityManager() {
         this.entityManagerFactory = Persistence.createEntityManagerFactory("jpa-eclipselink");
         this.entityManager = this.entityManagerFactory.createEntityManager();
     }
 
-    @Override
+    //@Override
     public void closeEntityManager() {
         this.entityManager.close();
         this.entityManagerFactory.close();
@@ -36,7 +36,7 @@ public class OrderDao implements IOrderDao {
     public List<Order> findAllOrders() {
         createEntityManager();
 
-       TypedQuery<Order> query = entityManager.createNamedQuery("findAllOrdersQuery", Order.class);
+        TypedQuery<Order> query = entityManager.createNamedQuery("findAllOrdersQuery", Order.class);
         List<Order> orders = query.getResultList();
 
         closeEntityManager();

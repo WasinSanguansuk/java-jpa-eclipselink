@@ -11,21 +11,21 @@ public class OrderDetail {
     //@Column(name = "id")
     //private Integer id;
     @EmbeddedId
-    OrderDetailKey key;
+    private OrderDetailKey key;
 
     //@Column(name = "orderId")
     //private Integer orderId;
     @ManyToOne
-    @MapsId("orderId")
+    @MapsId("orderIdKey")
     @JoinColumn(name = "orderId", nullable = false)
-    Order orderObject;
+    private Order orderObject;
 
     //@Column(name = "productId")
     //private Integer productId;
     @ManyToOne
-    @MapsId("productId")
+    @MapsId("productIdKey")
     @JoinColumn(name = "productId", nullable = false)
-    Product productObject;
+    private Product productObject;
 
     @Column(name = "quantityOrdered", nullable = false)
     private Integer quantityOrdered;

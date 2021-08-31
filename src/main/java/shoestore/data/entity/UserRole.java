@@ -4,7 +4,9 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "userroles")
-@NamedQuery(name = "findAllUserRolesQuery", query = "SELECT ur FROM UserRole ur")
+@NamedQueries({
+        @NamedQuery(name = "findAllUserRolesQuery", query = "SELECT ur FROM UserRole ur")
+})
 public class UserRole {
 
     enum Role {
@@ -21,7 +23,7 @@ public class UserRole {
     //private Integer userId;
 
     @ManyToOne()
-    @JoinColumn(name = "userId", nullable=false)
+    @JoinColumn(name = "userId", nullable = false)
     private User userObject;
 
     @Column(name = "role", nullable = false)

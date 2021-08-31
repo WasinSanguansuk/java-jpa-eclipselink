@@ -32,7 +32,7 @@ public class Product {
     //List<Order> orders;
 
     @OneToMany(mappedBy = "productObject")
-    List<OrderDetail> orderDetails;
+    private List<OrderDetail> orderDetails;
 
     // Constructors
     public Product() {

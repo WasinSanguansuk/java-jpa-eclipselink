@@ -9,8 +9,10 @@ import java.util.Set;
 
 @Entity
 @Table(name = "users")
-@NamedQuery(name = "findAllUsersQuery", query = "SELECT u FROM User u")
-@NamedQuery(name = "findUsersByLastNameQuery", query = "SELECT u FROM User u WHERE u.lastName = :lastNameValue")
+@NamedQueries({
+        @NamedQuery(name = "findAllUsersQuery", query = "SELECT u FROM User u"),
+        @NamedQuery(name = "findUsersByLastNameQuery", query = "SELECT u FROM User u WHERE u.lastName = :lastNameValue")
+})
 public class User {
     // Data
     //// "SELECT * FROM users;"

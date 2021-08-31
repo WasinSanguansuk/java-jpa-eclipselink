@@ -6,8 +6,8 @@ import java.util.List;
 
 public interface IUserDao {
 
-    void createEntityManager();
-    void closeEntityManager();
+    //void createEntityManager();
+    //void closeEntityManager();
 
     List<User> findAllUsers();
     User findUserById(Integer idIn);

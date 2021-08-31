@@ -26,13 +26,13 @@ public class UserDao implements IUserDao {
     //}
 
     // Methods
-    @Override
+    //@Override
     public void createEntityManager() {
         this.entityManagerFactory = Persistence.createEntityManagerFactory("jpa-eclipselink");
         this.entityManager = this.entityManagerFactory.createEntityManager();
     }
 
-    @Override
+    //@Override
     public void closeEntityManager() {
         this.entityManager.close();
         this.entityManagerFactory.close();

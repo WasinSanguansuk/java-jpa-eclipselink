@@ -8,7 +8,9 @@ import java.util.List;
 
 @Entity
 @Table(name = "orders")
-@NamedQuery(name = "findAllOrdersQuery", query = "SELECT o FROM Order o")
+@NamedQueries({
+        @NamedQuery(name = "findAllOrdersQuery", query = "SELECT o FROM Order o")
+})
 public class Order {
 
     enum Status {
@@ -51,7 +53,7 @@ public class Order {
     //List<Product> productsInOrder;
 
     @OneToMany(mappedBy = "orderObject")
-    List<OrderDetail> orderDetails;
+    private List<OrderDetail> orderDetails;
 
     // Constructors
     public Order() {

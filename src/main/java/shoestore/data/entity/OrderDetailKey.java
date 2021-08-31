@@ -9,16 +9,20 @@ import java.io.Serializable;
 public class OrderDetailKey implements Serializable {
 
     @Column(name = "orderId")
-    Integer orderId;
+    private Integer orderIdKey;
 
     @Column(name = "productId")
-    Integer productId;
+    private Integer productIdKey;
+
+    public OrderDetailKey() {
+    }
 
     @Override
     public String toString() {
         return "OrderDetailKey{" +
-                "orderId=" + orderId +
-                ", productId=" + productId +
+                "orderIdKey=" + orderIdKey +
+                ", productIdKey=" + productIdKey +
                 '}';
     }
+
 }

@@ -7,8 +7,8 @@ import java.util.List;
 
 public interface IOrderDao {
 
-    void createEntityManager();
-    void closeEntityManager();
+    //void createEntityManager();
+    //void closeEntityManager();
 
     List<Order> findAllOrders();
     Order findOrderById(Integer idIn);

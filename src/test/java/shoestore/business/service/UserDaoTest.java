@@ -44,9 +44,9 @@ public class UserDaoTest {
     }
 
     @Test
-    public void testGetUserById() {
+    public void findUserById_validId_found() {
         System.out.println("---------- ---------- ---------- ---------- ----------");
-        System.out.println("@Test - testGetUserById()");
+        System.out.println("@Test - findUserById_validId_found()");
 
         // given
         User expected = new User();
@@ -63,9 +63,9 @@ public class UserDaoTest {
 
     // bad test; shouldn't modify the database
     @Test
-    public void testNoDuplicateEmail() {
+    public void addUser_duplicateEmail_exceptionThrown() {
         System.out.println("---------- ---------- ---------- ---------- ----------");
-        System.out.println("@Test - testDuplicateEmail()");
+        System.out.println("@Test - addUser_duplicateEmail_exceptionThrown()");
 
         // given
         User newUser = new User();
